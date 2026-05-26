@@ -138,8 +138,8 @@ export default function WikiChat() {
           position: 'fixed',
           right: 'calc(24px + env(safe-area-inset-right))',
           bottom: 'calc(24px + env(safe-area-inset-bottom))',
-          padding: '14px 24px',
-          height: '64px',
+          padding: '10px 32px',
+          height: '50px',
           borderRadius: '9999px',
           background:
             'hsl(var(--nextra-primary-hue, 200) var(--nextra-primary-saturation, 100%) var(--nextra-primary-lightness, 45%))',
@@ -147,14 +147,14 @@ export default function WikiChat() {
           boxShadow: '0 10px 25px rgba(0,0,0,0.20)',
           display: open ? 'none' : 'flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: '14px',
           cursor: 'pointer',
           zIndex: 60,
           border: 'none',
           fontFamily: 'inherit',
         }}
       >
-        <svg width="33" height="33" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           {/* Big 4-point sparkle, slightly left of center */}
           <path d="M9 1.5 L10.3 7.7 16.5 9 10.3 10.3 9 16.5 7.7 10.3 1.5 9 7.7 7.7 Z" />
           {/* Smaller sparkle, upper right */}
@@ -162,7 +162,7 @@ export default function WikiChat() {
           {/* Tiny sparkle, lower right */}
           <path d="M19 16 L19.4 17.6 21 18 19.4 18.4 19 20 18.6 18.4 17 18 18.6 17.6 Z" opacity="0.7" />
         </svg>
-        <span style={{ fontWeight: 600, fontSize: '23px', letterSpacing: '0.3px', lineHeight: 1 }}>Ai</span>
+        <span style={{ fontWeight: 700, fontSize: '22px', letterSpacing: '0.3px', lineHeight: 1 }}>Ai</span>
       </button>
 
       {open && (
