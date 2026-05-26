@@ -141,9 +141,10 @@ export default function WikiChat() {
           padding: '12px 20px',
           height: '52px',
           borderRadius: '9999px',
-          background: '#111827',
+          background:
+            'hsl(var(--nextra-primary-hue, 200) var(--nextra-primary-saturation, 100%) var(--nextra-primary-lightness, 45%))',
           color: 'white',
-          boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
+          boxShadow: '0 10px 25px rgba(0,0,0,0.20)',
           display: open ? 'none' : 'flex',
           alignItems: 'center',
           gap: '8px',
