@@ -8,3 +8,13 @@
   --nextra-menu-height: 3.75rem;
   --nextra-banner-height: 2.5rem;
 }
+
+/* Hide the project (GitHub) icon in the navbar on small screens. The desktop
+   header keeps it. Targets common Nextra DOM patterns for the project link. */
+@media (max-width: 767px) {
+  .nextra-nav-container a[href*="github.com"],
+  header a[href*="github.com"],
+  nav a[aria-label="GitHub"] {
+    display: none !important;
+  }
+}
