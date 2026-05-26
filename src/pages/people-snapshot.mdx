@@ -1,23 +1,23 @@
-# People — LinkedIn snapshot (methodology)
+# People — Directory snapshot (methodology)
 
-**Summary:** Snapshot of 280 people listed on the GBGH LinkedIn /people/ page on 2026-05-25. Source data is in `raw/linkedin/`. Each person has a dedicated note in `wiki/people/`.
-**Sources:** `raw/linkedin/employees.csv`, `raw/linkedin/employees.json`
+**Summary:** Snapshot of 280 people listed on the GBGH staff directory on 2026-05-25. Source data is in `raw/staff-directory/`. Each person has a dedicated note in `wiki/people/`.
+**Sources:** `raw/staff-directory/employees.csv`, `raw/staff-directory/employees.json`
 **Last updated:** 2026-05-25
 
 ---
 
 ## What this is
 
-The LinkedIn page at linkedin.com/company/gbghmidland/people/ advertises 368 associated members. 280 unique profile cards rendered in the saved page snapshot. The gap is private profiles and entries that did not lazy-load.
+The staff directory page at linkedin.com/company/gbghmidland/people/ advertises 368 associated members. 280 unique profile cards rendered in the saved page snapshot. The gap is private profiles and entries that did not lazy-load.
 
-LinkedIn affiliation is self-declared. A person listed here may have moved on but not updated their profile. A person not listed here may still work at GBGH but have a private profile or not use LinkedIn.
+Directory affiliation is self-declared. A person listed here may have moved on but not updated their profile. A person not listed here may still work at GBGH but have a private profile or not use staff directory.
 
 ## How the data was collected
 
 1. The /people/ tab was scrolled to the end while logged in to capture all rendered employee cards.
 2. The page was saved as HTML (now deleted for security).
-3. A Python parser extracted name, LinkedIn headline, and profile URL from each `div.org-people-profile-card__profile-info` element.
-4. Output written to `raw/linkedin/employees.csv` and `.json`.
+3. A Python parser extracted name, Headline, and profile URL from each `div.org-people-profile-card__profile-info` element.
+4. Output written to `raw/staff-directory/employees.csv` and `.json`.
 
 ## How role families are inferred
 
@@ -33,7 +33,7 @@ A headline containing `former`, `formerly`, `retired`, `past`, `previously`, or 
 
 Cross-referenced against [Senior Leadership](/senior-leadership):
 
-| Role | Name | On LinkedIn extract |
+| Role | Name | In directory extract |
 |---|---|---|
 | President & CEO | Matthew Lawson | yes |
 | VP Clinical Services & CNE | Linda Gravel | yes |
@@ -43,7 +43,7 @@ Cross-referenced against [Senior Leadership](/senior-leadership):
 | President, Professional Staff Association | Dr. Sean Robinson | no |
 | VP, Professional Staff Association | Dr. Danielle Davenport | no |
 
-Absence from LinkedIn does not mean departure. Physicians often have private profiles.
+Absence from staff directory does not mean departure. Physicians often have private profiles.
 
 ## Related
 

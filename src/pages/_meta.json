@@ -16,9 +16,9 @@
   "gbgh-foundation": "GBGH Foundation",
   "-- people": {
     "type": "separator",
-    "title": "People (LinkedIn snapshot)"
+    "title": "People (staff directory)"
   },
-  "people-linkedin-snapshot": "Methodology",
+  "people-snapshot": "Methodology",
   "people": "All People",
   "-- programs": {
     "type": "separator",
