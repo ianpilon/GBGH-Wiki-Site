@@ -131,30 +131,37 @@ export default function WikiChat() {
   return (
     <>
       <button
-        aria-label="Open wiki chat"
+        aria-label="Open AI chat"
         onClick={() => setOpen(true)}
         title="Ask the wiki (Cmd+/)"
         style={{
           position: 'fixed',
           right: 'calc(24px + env(safe-area-inset-right))',
           bottom: 'calc(24px + env(safe-area-inset-bottom))',
-          width: '56px',
-          height: '56px',
+          padding: '12px 20px',
+          height: '52px',
           borderRadius: '9999px',
           background: '#111827',
           color: 'white',
           boxShadow: '0 10px 25px rgba(0,0,0,0.25)',
           display: open ? 'none' : 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          gap: '8px',
           cursor: 'pointer',
           zIndex: 60,
           border: 'none',
+          fontFamily: 'inherit',
         }}
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          {/* Big 4-point sparkle, slightly left of center */}
+          <path d="M9 1.5 L10.3 7.7 16.5 9 10.3 10.3 9 16.5 7.7 10.3 1.5 9 7.7 7.7 Z" />
+          {/* Smaller sparkle, upper right */}
+          <path d="M18 3 L18.7 5.3 21 6 18.7 6.7 18 9 17.3 6.7 15 6 17.3 5.3 Z" opacity="0.85" />
+          {/* Tiny sparkle, lower right */}
+          <path d="M19 16 L19.4 17.6 21 18 19.4 18.4 19 20 18.6 18.4 17 18 18.6 17.6 Z" opacity="0.7" />
         </svg>
+        <span style={{ fontWeight: 600, fontSize: '15px', letterSpacing: '0.3px' }}>Ai</span>
       </button>
 
       {open && (
