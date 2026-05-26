@@ -1,0 +1,33 @@
+# Log
+
+Append-only record of operations on this wiki. Newest at the bottom.
+
+## 2026-05-25
+
+- Scaffolded wiki: `raw/`, `wiki/`, `rules.md`, `wiki/index.md`, `wiki/log.md`.
+- Set up scrape tooling at `.tools/scrape.py` (Python venv with requests, beautifulsoup4, markdownify, lxml).
+- Confirmed robots.txt permits scraping all paths. Sitemap is `https://gbgh.on.ca/sitemap_index.xml`. Total ~302 URLs (80 pages + 222 posts).
+- Started scrape of full site (1 req/sec, polite UA with contact email). Output to `raw/pages/` (markdown) and `raw/pdfs/`.
+- Scrape complete: 364 markdown pages (1.9 MB), 124 PDFs (79 MB), 6 failures (logged in `raw/_index.json`). Sitemap breakdown: 221 posts, 80 pages, 42 property listings, 17 analytics-plugin pages, 2 categories, 1 author, 1 admin form.
+- Phase 1 ingest (11 pages): gbgh-overview, history, strategic-plan, board-of-directors, senior-leadership, accreditation-and-awards, contact-and-locations, land-acknowledgement, public-reporting, gbgh-foundation, programs-services-index. Source files: _home.md, our-history.md, our-strategic-plan.md, board-of-directors.md, accreditation-awards.md, contact-us.md, gbgh-land-acknowledgement.md, public-reporting.md, programs-and-services.md, patient-and-visitor.md.
+- Phase 2 ingest (26 pages): emergency-department, intensive-care-unit, surgical-services, ambulatory-care, obstetrical-unit, diagnostic-imaging, mri, ct-scan, x-ray, ultrasound, mammography, clinical-laboratory, pharmacy, respiratory-therapy, rehabilitation, medical-services, complex-continuing-care, palliative-care, dialysis, otn-telemedicine, gbgh-at-home, my-health-care, food-services, discharge-planning, ed-wait-times-clock, inpatient-referral-policy. Skipped: philips-lifeline form pages (no wiki-worthy content).
+- Open flags surfaced for later resolution:
+  - Senior Leadership: Angela Wiggins appears in both "Current" and "Past Employees" sections of public-reporting expense reports; status ambiguous.
+  - Medical Services: public page lists 2 East and 2 North inpatient units, but news posts reference 1 North as well; either an unlisted unit or the page is out of date.
+  - GBGH Foundation: own site (gbghf.ca) was not scraped; pages would need a separate ingest to be filled out properly.
+  - Dialysis: news post "GBGH officially opens new dialysis site in Midland" implies the 611 Prospect Blvd location is recent; date not yet captured in this ingest.
+  - Senior leadership: a dedicated /about-us/senior-leadership-team/ page is referenced from page footers but was NOT in the scraped sitemap. Re-scrape recommended to fill the gap.
+- Pause: awaiting user review of Phases 1-2 structure before proceeding to Phases 3-6.
+- User confirmed: proceed.
+- Phase 3 ingest (18 pages): patient-visitor-index, parking, visiting-hours, what-to-bring, directions, essential-care-partner, indigenous-patient-navigator, patient-family-advisory-council, patient-safety, patient-relations, health-records-and-privacy (consolidates Health Records + Privacy Statement + FIPPA), spiritual-support, on-site-services, internet-phone-tv, no-smoking, pet-therapy, thinking-of-you, thank-your-care-team. Skipped: disclaimer, terms-of-use, feedback (forms or boilerplate).
+- Cross-file updates: [Medical Services](/medical-services) updated (1 North confirmed by ECP page); [History](/history) expanded with non-formation milestones table (2007 smoke-free, 2022 site closure, etc.).
+- Phase 4 ingest (9 pages): quality-metrics-index, hand-hygiene, hsmr-mortality, ssc-compliance, infection-cdi, infection-cli, infection-mrsa, infection-vap, infection-vre. PDF extraction via pypdf added to venv. Major finding: hand hygiene compliance declining 3 quarters running (Before Patient: 83% → 70% → 62%); four hospital-acquired infection metrics at zero cases.
+- Phase 5 ingest (3 pages): timeline (curated cross-cutting events 2008-2026 from 221 news posts), covid-19-response (consolidates 51 COVID posts), mri-project-history (consolidates 7 MRI posts).
+- Phase 6 ingest (3 pages): careers (consolidates 5 join-our-teams pages + news posts; reveals 113-bed hospital + ~55K-200K catchment), housing-for-healthcare (collapses 41 property listings + launch news post), patient-education-handouts (index of 35 surgical handout PDFs).
+- Final count: 70 wiki pages plus index.md and log.md = 72 files in `wiki/`. Built from 364 scraped pages + 124 PDFs.
+- Open flags carried forward in `wiki/index.md`: hand hygiene decline (no explanation), Senior Leadership ambiguity (Angela Wiggins status), missing scrape of /about-us/senior-leadership-team/, missing scrape of gbghf.ca, conflicting values lists between physician-recruitment and strategic-plan pages.
+- LinkedIn people layer added. Saved the linkedin.com/company/gbghmidland/people/ page from a logged-in browser, parsed 280 unique employee cards from `div.org-people-profile-card__profile-info` elements. Raw outputs at `raw/linkedin/employees.\{csv,json\}` (HTML deleted after parse for security). Generated 280 per-employee notes at `wiki/people/&lt;slug>.md` with name, headline, linkedin URL, status (current/former), and role-family frontmatter. Built 18 role-family hub pages and `wiki/people/index.md` (searchable hub) plus `wiki/people-linkedin-snapshot.md` (methodology and caveats).
+- Status heuristic: any headline containing former/formerly/retired/past/previously/ex-GBGH is tagged `former` (6 hits); the remaining 274 are `current` by default (silent departures will still show as current).
+- Role-family heuristic top buckets: nursing (66), leadership (16), physicians (12), support-services (11), allied-health (10), laboratory (9). 114 of 280 (~41%) did not match any keyword and are bucketed `unclassified`. Acceptable: many headlines just say "Georgian Bay General Hospital" with no role.
+- Cross-referenced against [Senior Leadership](/senior-leadership): Matthew Lawson (CEO), Linda Gravel (CNE), Marcia Chapman (CFO) all confirmed on LinkedIn. Angela Wiggins (CHRO), Vikram Ralhan (Chief of Staff), Sean Robinson, Danielle Davenport not in the snapshot. Updated senior-leadership.md with these findings; the Wiggins flag now cites the LinkedIn absence as a soft signal toward "no longer current".
+- LinkedIn affiliation is self-declared. Treat per-person `current` status as a soft signal, not employment confirmation. 280 of 368 advertised members rendered in the saved HTML; the 88 gap is hidden/private profiles.

@@ -1,0 +1,53 @@
+# People — LinkedIn snapshot (methodology)
+
+**Summary:** Snapshot of 280 people listed on the GBGH LinkedIn /people/ page on 2026-05-25. Source data is in `raw/linkedin/`. Each person has a dedicated note in `wiki/people/`.
+**Sources:** `raw/linkedin/employees.csv`, `raw/linkedin/employees.json`
+**Last updated:** 2026-05-25
+
+---
+
+## What this is
+
+The LinkedIn page at linkedin.com/company/gbghmidland/people/ advertises 368 associated members. 280 unique profile cards rendered in the saved page snapshot. The gap is private profiles and entries that did not lazy-load.
+
+LinkedIn affiliation is self-declared. A person listed here may have moved on but not updated their profile. A person not listed here may still work at GBGH but have a private profile or not use LinkedIn.
+
+## How the data was collected
+
+1. The /people/ tab was scrolled to the end while logged in to capture all rendered employee cards.
+2. The page was saved as HTML (now deleted for security).
+3. A Python parser extracted name, LinkedIn headline, and profile URL from each `div.org-people-profile-card__profile-info` element.
+4. Output written to `raw/linkedin/employees.csv` and `.json`.
+
+## How role families are inferred
+
+Each headline is matched against ordered regex rules (first match wins). Categories include nursing, physicians, pharmacy, allied health, laboratory, diagnostic imaging, leadership, and several support and admin groups. Anyone whose headline does not match any rule is bucketed as `unclassified`.
+
+Classification is approximate. A pharmacy technician with no role keyword in their headline may be tagged `unclassified`. A clinical educator who is also a nurse will land in `education` (matched first), not `nursing`.
+
+## How current vs former is detected
+
+A headline containing `former`, `formerly`, `retired`, `past`, `previously`, or `ex-GBGH` is marked `former`. Everyone else is `current`. This catches the obvious cases. People who silently left without updating their headline still appear as `current`.
+
+## Leadership corroboration
+
+Cross-referenced against [Senior Leadership](/senior-leadership):
+
+| Role | Name | On LinkedIn extract |
+|---|---|---|
+| President & CEO | Matthew Lawson | yes |
+| VP Clinical Services & CNE | Linda Gravel | yes |
+| VP Performance, Support Services & CFO | Marcia Chapman | yes |
+| VP People, Culture & CHRO | Angela Wiggins | no |
+| Chief of Staff | Dr. Vikram Ralhan | no |
+| President, Professional Staff Association | Dr. Sean Robinson | no |
+| VP, Professional Staff Association | Dr. Danielle Davenport | no |
+
+Absence from LinkedIn does not mean departure. Physicians often have private profiles.
+
+## Related
+
+- [People index (searchable)](/people/index)
+- [Senior Leadership](/senior-leadership)
+- [Board Of Directors](/board-of-directors)
+- [Careers](/careers)
