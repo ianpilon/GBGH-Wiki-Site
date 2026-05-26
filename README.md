@@ -11,6 +11,14 @@ Built from a public scrape of `gbgh.on.ca` (services, governance, quality metric
 - Tailwind CSS
 - Floating chat panel powered by Groq (Llama 3.3 70B), with BM25 keyword retrieval over all 372 wiki pages
 
+## AI Chat
+
+A floating chat panel lives on every page. Click the bottom-right button (or press `Cmd+/`) to ask questions in plain language about the wiki. Answers cite the wiki pages they draw from with inline clickable links.
+
+![AI chat panel open on the GBGH Overview page](public/wiki-chat-screenshot.png)
+
+Per question, the API ranks all `.mdx` pages by BM25 against the user's query, sends the top 4 most relevant pages (plus the page they're viewing) to Groq's Llama 3.3 70B, and asks for an answer with markdown citations.
+
 ## Local dev
 
 ```bash
