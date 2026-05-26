@@ -1,7 +1,7 @@
 export default {
   logo: <span style={{ fontWeight: 'bold' }}>Georgian Bay General Hospital — Wiki</span>,
   project: {
-    link: 'https://gbgh.on.ca'
+    link: 'https://github.com/ianpilon/GBGH-Wiki-Site'
   },
   useNextSeoProps() {
     return {
