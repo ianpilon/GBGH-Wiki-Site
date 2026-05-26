@@ -175,7 +175,8 @@ export default function WikiChat() {
           position: 'fixed',
           top: 0,
           right: 0,
-          height: '100vh',
+          height: '100dvh',
+          maxHeight: '100dvh',
           width: 'min(420px, 100vw)',
           background: '#ffffff',
           color: '#111827',
@@ -303,7 +304,7 @@ export default function WikiChat() {
           )}
         </div>
 
-        <form onSubmit={handleSubmit} style={{ borderTop: '1px solid #e5e7eb', padding: '12px 16px', display: 'flex', gap: '8px', background: '#fff' }}>
+        <form onSubmit={handleSubmit} style={{ borderTop: '1px solid #e5e7eb', padding: '12px 16px', paddingBottom: 'calc(12px + env(safe-area-inset-bottom))', display: 'flex', gap: '8px', background: '#fff' }}>
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
